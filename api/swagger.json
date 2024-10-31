@@ -1,0 +1,111 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Cheeseria API",
+    "description": "API documentation for Cheeseria"
+  },
+  "host": "localhost:3001",
+  "basePath": "/",
+  "schemes": ["http"],
+  "paths": {
+    "/cheeses": {
+      "get": {
+        "security": [],
+        "operationId": "getAllCheeses",
+        "summary": "Get all cheeses",
+        "description": "Retrieve a list of all cheeses",
+        "responses": {
+          "400": {
+            "description": "Bad request"
+          },
+          "404": {
+            "description": "Cheeses not found"
+          },
+          "200": {
+            "description": "A list of cheeses",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "example": 1
+                  },
+                  "name": {
+                    "type": "string",
+                    "example": "Cheddar"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "A popular cheese with a sharp taste."
+                  },
+                  "price": {
+                    "type": "number",
+                    "example": 9.99
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/cheeses/{id}": {
+      "get": {
+        "security": [],
+        "operationId": "getCheeseById",
+        "summary": "Get a cheese by ID",
+        "description": "Retrieve a specific cheese by its unique ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "The unique ID of the cheese"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A cheese object",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "example": 1
+                },
+                "name": {
+                  "type": "string",
+                  "example": "Cheddar"
+                },
+                "description": {
+                  "type": "string",
+                  "example": "A popular cheese with a sharp taste."
+                },
+                "price": {
+                  "type": "number",
+                  "example": 9.99
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Cheese not found"
+          },
+          "400": {
+            "description": "Bad request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    }
+  }
+}
